@@ -1,0 +1,29 @@
+name: testproj1
+description: "A new Flutter project."
+publish_to: 'none'  # Remove this line if you wish to publish to pub.dev
+
+# The version and build number for your application.
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6  # Dependency for Cupertino icons
+  http: ^0.12.0            # HTTP package for making network requests
+  frideos: ^0.6.0          # Frideos package for Flutter state management
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0    # Recommended lints for good coding practices
+
+flutter:
+  uses-material-design: true
+
+  # Add custom fonts, assets, or any other configurations here.
+  # For this example, we've omitted custom font and asset configurations.
+  # See https://flutter.dev/docs/development/ui/assets-and-images
+  # and https://flutter.dev/docs/development/ui/widgets/assets-and-images#resolution-aware
