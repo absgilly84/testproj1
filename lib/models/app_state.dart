@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:frideos/frideos.dart';
+//import 'package:frideos/frideos.dart';
 import 'package:testproj1/services/api_service.dart';
 import 'package:testproj1/models/category.dart';
 import 'package:testproj1/models/question_model.dart';
-import 'package:testproj1/models/trivia_models.dart';
+//import 'package:testproj1/models/trivia_models.dart';
+//import 'path_to_your_file/game_bloc.dart';
+
 
 class AppState {
   // THEMES

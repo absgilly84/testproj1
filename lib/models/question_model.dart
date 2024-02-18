@@ -2,11 +2,11 @@
 
 class QuestionModel {
   QuestionModel({
-    this.question,
-    this.correctAnswer,
-    this.incorrectAnswers,
-    this.imageOptions,
-    this.videoOption,
+    required this.question,
+    required this.correctAnswer,
+    required this.incorrectAnswers,
+    required this.imageOptions,
+    required this.videoOption,
   });
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) {
@@ -28,11 +28,11 @@ class QuestionModel {
 
 class Question {
   Question({
-    this.question,
-    this.answers,
-    this.correctAnswerIndex,
-    this.levelType,
-    this.userAnsweredCorrectly,
+    required this.question,
+    required this.answers,
+    required this.correctAnswerIndex,
+    required this.levelType,
+    required this.userAnsweredCorrectly,
   });
 
   factory Question.fromQuestionModel(QuestionModel model, int levelType) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:testproj1/models/question_model.dart'; // Update with your actual model import
 
 class SummaryAnswers extends StatelessWidget {
-  const SummaryAnswers({Key key, this.index, this.question}) : super(key: key);
+  const SummaryAnswers({required Key key, required this.index, required this.question}) : super(key: key);
 
   final int index;
   final QuestionModel question;

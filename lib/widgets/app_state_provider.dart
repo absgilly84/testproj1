@@ -1,7 +1,6 @@
 // app_state_provider.dart
 import 'package:flutter/material.dart';
-import 'package:testproj1/models/appstate.dart';
-//help
+import 'package:testproj1/models/app_state.dart';
 
 class AppStateProvider extends InheritedWidget {
   final AppState appState;
@@ -14,5 +13,5 @@ class AppStateProvider extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(covariant InheritedWidget oldWidget) => false;
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) => true;
 }
