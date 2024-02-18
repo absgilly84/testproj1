@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.6  # Dependency for Cupertino icons
-  http: ^1.2.1
+  http: ^0.13.3
   video_player: ^2.8.2
 
 dev_dependencies:

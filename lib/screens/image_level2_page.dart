@@ -4,19 +4,19 @@ import 'package:testproj1/models/question_model.dart';
 class ImageLevel2Page extends StatelessWidget {
   final QuestionModel question;
 
-  const ImageLevel2Page({Key key, this.question}) : super(key: key);
+  const ImageLevel2Page({required Key key, required this.question}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Media Images Recognition'), // Updated title
+        title: const Text('Media Images Recognition'), // Updated title
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(question.question), // Display the question
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           // Display image options based on question.imageOptions
           for (String imageOption in question.imageOptions)
             ElevatedButton(
@@ -26,7 +26,7 @@ class ImageLevel2Page extends StatelessWidget {
               },
               child: Text(imageOption),
             ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           // Display the score, number of wrong answers, number of correct answers, and not answered questions
           Text('Score: ${question.score}'),
           Text('Wrong Answers: ${question.wrongAnswers}'),

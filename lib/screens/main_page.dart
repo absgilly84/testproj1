@@ -1,51 +1,317 @@
+// // import 'package:flutter/material.dart';
+// import 'dart:ui';
+// import 'package:testproj1/widgets/app_state_provider.dart';
+// import 'package:testproj1/models/app_state.dart';
+// import 'package:testproj1/models/category.dart'; // Import the Category model
+
+
+// class MainPage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     final appState = AppStateProvider.of<AppState>(context);
+
+//     return Scaffold(
+//       appBar: AppBar(title: Text('Misinformation Game')),
+//       body: StreamBuilder<List<Category>>(
+//         stream: appState.categoriesStream.stream,
+//         builder: (context, snapshot) {
+//           if (snapshot.hasData) {
+//             final List<Category> categories = snapshot.data!;
+//             return Column(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: [
+//                 for (final category in categories)
+//                   ElevatedButton(
+//                     onPressed: () {
+//                       // Navigate to the appropriate level page based on category ID
+//                       navigateToLevelPage(context, category.id);
+//                     },
+//                     child: Text(category.name),
+//                   ),
+//               ],
+//             );
+//           } else if (snapshot.hasError) {
+//             return Center(
+//               child: Text('Error: ${snapshot.error}'),
+//             );
+//           } else {
+//             return Center(
+//               child: CircularProgressIndicator(),
+//             );
+//           }
+//         },
+//       ),
+//     );
+//   }
+
+//   void navigateToLevelPage(BuildContext context, int categoryId) {
+//     switch (categoryId) {
+//       case 1:
+//         Navigator.pushNamed(context, '/image_level1');
+//         break;
+//       case 2:
+//         Navigator.pushNamed(context, '/image_level2');
+//         break;
+//       case 3:
+//         Navigator.pushNamed(context, '/video_level');
+//         break;
+//       default:
+//         // Handle other categories if needed
+//         break;
+//     }
+//   }
+// }
+// import 'package:flutter/material.dart';
+// import 'package:testproj1/widgets/app_state_provider.dart';
+// import 'package:testproj1/models/app_state.dart';
+// import 'package:testproj1/models/category.dart'; // Import the Category model
+
+// class MainPage extends StatelessWidget {
+//   const MainPage({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final appState = AppStateProvider.of<AppState>(context);
+
+//     return Scaffold(
+//       appBar: AppBar(title: const Text('Misinformation Game')),
+//       body: StreamBuilder<List<Category>>(
+//         stream: appState.categoriesStream.stream,
+//         builder: (context, snapshot) {
+//           if (snapshot.hasData) {
+//             final List<Category> categories = snapshot.data!;
+//             return Column(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: [
+//                 for (final category in categories)
+//                   ElevatedButton(
+//                     onPressed: () {
+//                       // Navigate to the appropriate level page based on category ID
+//                       navigateToLevelPage(context, category.id);
+//                     },
+//                     child: Text(category.name),
+//                   ),
+//               ],
+//             );
+//           } else if (snapshot.hasError) {
+//             return Center(
+//               child: Text('Error: ${snapshot.error}'),
+//             );
+//           } else {
+//             return Center(
+//               child: CircularProgressIndicator(),
+//             );
+//           }
+//         },
+//       ),
+//     );
+//   }
+
+//   void navigateToLevelPage(BuildContext context, int categoryId) {
+//     switch (categoryId) {
+//       case 1:
+//         Navigator.pushNamed(context, '/image_level1');
+//         break;
+//       case 2:
+//         Navigator.pushNamed(context, '/image_level2');
+//         break;
+//       case 3:
+//         Navigator.pushNamed(context, '/video_level');
+//         break;
+//       default:
+//         // Handle other categories if needed
+//         break;
+//     }
+//   }
+// }
+// import 'package:flutter/material.dart';
+// import 'package:testproj1/widgets/app_state_provider.dart';
+// import 'package:testproj1/models/app_state.dart';
+// import 'package:testproj1/models/category.dart'; // Import the Category model
+
+// class MainPage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     // Adjust the type argument of AppStateProvider to AppState
+//     final appState = AppStateProvider.of<AppState>(context);
+
+//     return Scaffold(
+//       appBar: AppBar(title: Text('Misinformation Game')),
+//       body: StreamBuilder<List<DifficultyLevel>>(
+//         stream: appState.categoriesStream.stream,
+//         builder: (context, snapshot) {
+//           if (snapshot.hasData) {
+//             final List<DifficultyLevel> categories = snapshot.data!;
+//             return Column(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: [
+//                 for (final category in categories)
+//                   ElevatedButton(
+//                     onPressed: () {
+//                       // Navigate to the appropriate level page based on category ID
+//                       navigateToLevelPage(context, category.id);
+//                     },
+//                     child: Text(category.name),
+//                   ),
+//               ],
+//             );
+//           } else if (snapshot.hasError) {
+//             return Center(
+//               child: Text('Error: ${snapshot.error}'),
+//             );
+//           } else {
+//             return Center(
+//               child: CircularProgressIndicator(),
+//             );
+//           }
+//         },
+//       ),
+//     );
+//   }
+
+//   void navigateToLevelPage(BuildContext context, int categoryId) {
+//     switch (categoryId) {
+//       case 1:
+//         Navigator.pushNamed(context, '/image_level1');
+//         break;
+//       case 2:
+//         Navigator.pushNamed(context, '/image_level2');
+//         break;
+//       case 3:
+//         Navigator.pushNamed(context, '/video_level');
+//         break;
+//       default:
+//         // Handle other categories if needed
+//         break;
+//     }
+//   }
+// }
+// import 'package:flutter/material.dart';
+// import 'package:testproj1/widgets/app_state_provider.dart';
+// import 'package:testproj1/models/app_state.dart';
+// //import 'package:testproj1/models/difficulty_level.dart'; // Import the correct class representing difficulty levels
+// import 'package:testproj1/models/category.dart';
+
+// class MainPage extends StatelessWidget {
+//   const MainPage({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     // Adjust the type argument of AppStateProvider to AppState
+//     final appState = AppStateProvider.of<AppState>(context);
+
+//     return Scaffold(
+//       appBar: AppBar(title: const Text('Misinformation Game')),
+//       body: StreamBuilder<List<DifficultyLevel>>(
+//         stream: appState.categoriesStream.stream,
+//         builder: (context, snapshot) {
+//           if (snapshot.hasData) {
+//             final List<DifficultyLevel> categories = snapshot.data!;
+//             return Column(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: [
+//                 for (final category in categories)
+//                   ElevatedButton(
+//                     onPressed: () {
+//                       // Navigate to the appropriate level page based on category ID
+//                       navigateToLevelPage(context, category.id);
+//                     },
+//                     child: Text(category.name),
+//                   ),
+//               ],
+//             );
+//           } else if (snapshot.hasError) {
+//             return Center(
+//               child: Text('Error: ${snapshot.error}'),
+//             );
+//           } else {
+//             return const Center(
+//               child: CircularProgressIndicator(),
+//             );
+//           }
+//         },
+//       ),
+//     );
+//   }
+
+//   void navigateToLevelPage(BuildContext context, int categoryId) {
+//     switch (categoryId) {
+//       case 1:
+//         Navigator.pushNamed(context, '/image_level1');
+//         break;
+//       case 2:
+//         Navigator.pushNamed(context, '/image_level2');
+//         break;
+//       case 3:
+//         Navigator.pushNamed(context, '/video_level');
+//         break;
+//       default:
+//         // Handle other categories if needed
+//         break;
+//     }
+//   }
+// }
 import 'package:flutter/material.dart';
 import 'package:testproj1/widgets/app_state_provider.dart';
-import 'package:testproj1/models/app_state.dart';
-import 'package:testproj1/Screens/image_level1_page.dart';
-import 'package:testproj1/Screens/image_level2_page.dart';
-import 'package:testproj1/Screens/video_level_page.dart';
-import 'package:testproj1/Screens/summary_page.dart';
+//import 'package:testproj1/models/app_state.dart';
+import 'package:testproj1/models/category.dart';
 
 class MainPage extends StatelessWidget {
+  const MainPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final appState = AppStateProvider.of<AppState>(context);
+    // Remove the type argument from AppStateProvider.of
+    final appState = AppStateProvider.of(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Misinformation Game')),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              // Navigate to Level 1 page (media headline recognition)
-              Navigator.pushNamed(context, '/image_level1');
-            },
-            child: Text('Media Headline Recognition'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              // Navigate to Level 2 page (media images recognition)
-              Navigator.pushNamed(context, '/image_level2');
-            },
-            child: Text('Media Images Recognition'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              // Navigate to Level 3 page (media deepfake recognition)
-              Navigator.pushNamed(context, '/video_level');
-            },
-            child: Text('Media Deepfake Recognition'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              // Navigate to Summary page
-              Navigator.pushNamed(context, '/summary');
-            },
-            child: Text('Summary'),
-          ),
-        ],
+      appBar: AppBar(title: const Text('Misinformation Game')),
+      body: StreamBuilder<List<DifficultyLevel>>(
+        stream: appState.categoriesStream.stream,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final List<DifficultyLevel> categories = snapshot.data!;
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                for (final category in categories)
+                  ElevatedButton(
+                    onPressed: () {
+                      // Navigate to the appropriate level page based on category ID
+                      navigateToLevelPage(context, category.id);
+                    },
+                    child: Text(category.name),
+                  ),
+              ],
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text('Error: ${snapshot.error}'),
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
     );
+  }
+
+  void navigateToLevelPage(BuildContext context, int categoryId) {
+    switch (categoryId) {
+      case 1:
+        Navigator.pushNamed(context, '/image_level1');
+        break;
+      case 2:
+        Navigator.pushNamed(context, '/image_level2');
+        break;
+      case 3:
+        Navigator.pushNamed(context, '/video_level');
+        break;
+      default:
+        // Handle other categories if needed
+        break;
+    }
   }
 }
