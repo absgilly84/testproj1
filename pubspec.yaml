@@ -12,8 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.6  # Dependency for Cupertino icons
-  http: ^0.12.0            # HTTP package for making network requests
-  frideos: ^0.6.0          # Frideos package for Flutter state management
+  http: ^1.2.1
+  video_player: ^2.8.2
 
 dev_dependencies:
   flutter_test:
@@ -22,6 +22,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
 
   # Add custom fonts, assets, or any other configurations here.
   # For this example, we've omitted custom font and asset configurations.

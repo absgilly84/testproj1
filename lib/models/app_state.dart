@@ -1,31 +1,17 @@
-class AppState extends AppStateModel {
-  factory AppState() => _singletonAppState;
+import 'package:flutter/material.dart';
+import 'package:frideos/frideos.dart';
+import 'package:testproj1/services/api_service.dart';
+import 'package:testproj1/models/category.dart';
+import 'package:testproj1/models/question_model.dart';
+import 'package:testproj1/models/trivia_models.dart';
 
-  AppState._internal() {
-    print('-------APP STATE INIT--------');
-    _createThemes(themes);
-    _loadCategories();
-
-    countdown.value = 10.toString();
-    countdown.setTransformer(validateCountdown);
-
-    questionsAmount.value = 5.toString();
-    questionsAmount.setTransformer(validateAmount);
-
-    triviaBloc = TriviaBloc(
-        countdownStream: countdown,
-        questions: questions,
-        tabController: tabController);
-  }
-
-  static final AppState _singletonAppState = AppState._internal();
-
+class AppState {
   // THEMES
   final themes = List<MyTheme>();
   final currentTheme = StreamedValue<MyTheme>();
 
   // API
-  QuestionsAPI api = MockAPI();
+  final QuestionsAPI api = ApiService(); // Update with your API service
   final apiType = StreamedValue<ApiType>(initialData: ApiType.mock);
 
   // TABS
@@ -44,10 +30,10 @@ class AppState extends AppStateModel {
       StreamTransformer<String, String>.fromHandlers(handleData: (str, sink) {
     if (str.isNotEmpty) {
       final amount = int.tryParse(str);
-      if (amount > 1 && amount <= 15) {
+      if (amount != null && amount > 1 && amount <= 15) {
         sink.add(str);
       } else {
-        sink.addError('Insert a value from 2 to 15..');
+        sink.addError('Insert a value from 2 to 15.');
       }
     } else {
       sink.addError('Insert a value.');
@@ -64,7 +50,7 @@ class AppState extends AppStateModel {
       StreamTransformer<String, String>.fromHandlers(handleData: (str, sink) {
     if (str.isNotEmpty) {
       final time = int.tryParse(str);
-      if (time >= 3 && time <= 90) {
+      if (time != null && time >= 3 && time <= 90) {
         sink.add(str);
       } else {
         sink.addError('Insert a value from 3 to 90 seconds.');
@@ -74,50 +60,102 @@ class AppState extends AppStateModel {
     }
   });
 
+  // Custom fields for your game
+  final selectedDifficulty =
+      StreamedValue<DifficultyLevel>(initialData: DifficultyLevel.easy);
+
+  // Constructor
+  AppState._internal() {
+    print('-------APP STATE INIT--------');
+    _createThemes(themes);
+    _loadCategories();
+
+    countdown.value = '10'; // Initial countdown value
+    countdown.setTransformer(validateCountdown);
+
+    questionsAmount.value = '5'; // Initial questions amount value
+    questionsAmount.setTransformer(validateAmount);
+
+    triviaBloc = TriviaBloc(
+      countdownStream: countdown,
+      questions: questions,
+      tabController: tabController,
+    );
+  }
+
+  // Singleton setup
+  static final AppState _instance = AppState._internal();
+
+  factory AppState() => _instance;
+
+  // Initialization method
   @override
   Future<void> init() async {
     final String lastTheme = await Prefs.getPref('apptheme');
     if (lastTheme != null) {
-      currentTheme.value = themes.firstWhere((theme) => theme.name == lastTheme,
-          orElse: () => themes[0]);
+      currentTheme.value = themes.firstWhere(
+        (theme) => theme.name == lastTheme,
+        orElse: () => themes[0],
+      );
     } else {
       currentTheme.value = themes[0];
     }
   }
 
-  Future _loadCategories() async {
+  // Load categories method
+  Future<void> _loadCategories() async {
     final isLoaded = await api.getCategories(categoriesStream);
     if (isLoaded) {
       categoryChosen.value = categoriesStream.value.last;
     }
   }
 
-  Future _loadQuestions() async {
+  // Load questions method
+  Future<void> _loadQuestions() async {
+    // Choose the appropriate API and question type based on the selected difficulty
+    final QuestionType questionType =
+        _getQuestionTypeForDifficulty(selectedDifficulty.value);
     await api.getQuestions(
-        questions: questions,
-        number: int.parse(questionsAmount.value),
-        category: categoryChosen.value,
-        difficulty: questionsDifficulty.value,
-        type: QuestionType.multiple);
+      questions: questions,
+      number: int.parse(questionsAmount.value),
+      category: categoryChosen.value,
+      difficulty: questionsDifficulty.value,
+      type: questionType,
+    );
   }
 
-  void setCategory(Category category) => categoryChosen.value = category;
-
-  void setDifficulty(QuestionDifficulty difficulty) =>
-      questionsDifficulty.value = difficulty;
-
-  void setApiType(ApiType type) {
-    if (apiType.value != type) {
-      apiType.value = type;
-      if (type == ApiType.mock) {
-        api = MockAPI();
-      } else {
-        api = TriviaAPI();
-      }
-      _loadCategories();
+  // Method to determine the question type based on difficulty
+  QuestionType _getQuestionTypeForDifficulty(DifficultyLevel difficulty) {
+    switch (difficulty) {
+      case DifficultyLevel.easy:
+        return QuestionType.text; // Adjust as needed
+      case DifficultyLevel.medium:
+        return QuestionType.image; // Adjust as needed
+      case DifficultyLevel.hard:
+        return QuestionType.video; // Adjust as needed
+      default:
+        return QuestionType.text;
     }
   }
 
+  // Set category method
+  void setCategory(Category category) => categoryChosen.value = category;
+
+  // Set difficulty method
+  void setDifficulty(QuestionDifficulty difficulty) =>
+      questionsDifficulty.value = difficulty;
+
+  // Set API type method
+  void setApiType(ApiType type) {
+    if (apiType.value != type) {
+      apiType.value = type;
+      if (type == ApiType.remote) {
+        _loadCategories();
+      }
+    }
+  }
+
+  // Create themes method
   void _createThemes(List<MyTheme> themes) {
     themes.addAll([
       MyTheme(
@@ -141,22 +179,28 @@ class AppState extends AppStateModel {
     ]);
   }
 
+  // Set theme method
   void setTheme(MyTheme theme) {
     currentTheme.value = theme;
     Prefs.savePref<String>('apptheme', theme.name);
   }
 
+  // Change tab method
   set _changeTab(AppTab appTab) => tabController.value = appTab;
 
+  // Start trivia method
   void startTrivia() {
     _loadQuestions();
     _changeTab = AppTab.trivia;
   }
 
+  // End trivia method
   void endTrivia() => tabController.value = AppTab.main;
 
+  // Show summary method
   void showSummary() => tabController.value = AppTab.summary;
 
+  // Dispose method
   @override
   void dispose() {
     print('---------APP STATE DISPOSE-----------');
@@ -169,5 +213,6 @@ class AppState extends AppStateModel {
     questionsDifficulty.dispose();
     tabController.dispose();
     triviaBloc.dispose();
+    selectedDifficulty.dispose();
   }
 }
