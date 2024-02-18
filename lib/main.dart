@@ -143,44 +143,156 @@
 //     );
 //   }
 // }
+// import 'package:flutter/material.dart';
+// import 'package:testproj1/widgets/app_state_provider.dart';
+// import 'package:testproj1/widgets/value_builder.dart';
+// import 'package:testproj1/models/app_state.dart';
+// import 'package:testproj1/screens/main_page.dart';
+// import 'package:testproj1/screens/image_level1_page.dart';
+// import 'package:testproj1/screens/image_level2_page.dart';
+// import 'package:testproj1/screens/video_level_page.dart';
+// import 'package:testproj1/screens/summary_page.dart';
+
+// void main() {
+//   runApp(App());
+// }
+
+// class App extends StatelessWidget {
+//   final appState = AppState();
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return ValueBuilder<String>(
+//       stream: appState.themeStream.stream,
+//       builder: (context, theme) {
+//         return AppStateProvider(
+//           appState: appState,
+//           child: MaterialApp(
+//             title: 'Misinformation Game',
+//             theme: theme == 'light' ? ThemeData.light() : ThemeData.dark(),
+//             initialRoute: '/',
+//             routes: {
+//               '/': (context) => MainPage(),
+//               '/image_level1': (context) => ImageLevel1Page(question: null), // Pass a question here
+//               '/image_level2': (context) => ImageLevel2Page(question: null), // Pass a question here
+//               '/video_level': (context) => VideoLevelPage(),
+//               '/summary': (context) =>  SummaryPage(appState: appState),
+//             },
+//           ),
+//         );
+//       },
+//     );
+//   }
+// }
+// import 'package:flutter/material.dart';
+// import 'package:testproj1/screens/main_page.dart';
+// import 'package:testproj1/widgets/app_state_provider.dart';
+// import 'package:testproj1/models/app_state.dart';
+
+// void main() {
+//   runApp(App());
+// }
+
+// class App extends StatelessWidget {
+//   final appState = AppState();
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return AppStateProvider(
+//       appState: appState,
+//       child: MaterialApp(
+//         title: 'Misinformation Game',
+//         theme: ThemeData.light(),
+//         home: MainPage(),
+//       ),
+//     );
+//   }
+// }
+// import 'package:flutter/material.dart';
+// import 'package:testproj1/screens/main_page.dart';
+// import 'package:testproj1/models/app_state.dart'; // Import the AppState class
+
+// void main() {
+//   runApp(const App()); // Use const with the constructor to improve performance
+// }
+
+// class App extends StatelessWidget {
+//   final appState = AppState();
+
+//   const App({Key? key}) : super(key: key); // Add named 'key' parameter to the constructor
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Misinformation Game',
+//       theme: ThemeData.light(),
+//       home: MainPage(),
+//     );
+//   }
+// }
+// import 'package:flutter/material.dart';
+// import 'package:testproj1/screens/main_page.dart';
+// import 'package:testproj1/models/app_state.dart';
+
+// void main() {
+//   runApp(App());
+// }
+
+// class App extends StatelessWidget {
+//   final AppState appState = AppState();
+
+//   const App({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Misinformation Game',
+//       theme: ThemeData.light(),
+//       home: MainPage(),
+//     );
+//   }
+// }
+// import 'package:flutter/material.dart';
+// import 'package:testproj1/screens/main_page.dart';
+// import 'package:testproj1/models/app_state.dart';
+
+// void main() {
+//   runApp(App());
+// }
+
+// class App extends StatelessWidget {
+//   final AppState appState = AppState(); // Removed the const keyword here
+
+//   const App({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Misinformation Game',
+//       theme: ThemeData.light(),
+//       home: MainPage(),
+//     );
+//   }
+// }
 import 'package:flutter/material.dart';
-import 'package:testproj1/widgets/app_state_provider.dart';
-import 'package:testproj1/widgets/value_builder.dart';
-import 'package:testproj1/models/app_state.dart';
 import 'package:testproj1/screens/main_page.dart';
-import 'package:testproj1/screens/image_level1_page.dart';
-import 'package:testproj1/screens/image_level2_page.dart';
-import 'package:testproj1/screens/video_level_page.dart';
-import 'package:testproj1/screens/summary_page.dart';
+import 'package:testproj1/models/app_state.dart';
 
 void main() {
   runApp(App());
 }
 
 class App extends StatelessWidget {
-  final appState = AppState();
+  final AppState appState = AppState(); // Removed the const keyword here
+
+  App({Key? key}) : super(key: key); // Removed the const keyword here
 
   @override
   Widget build(BuildContext context) {
-    return ValueBuilder<String>(
-      stream: appState.themeStream,
-      builder: (context, theme) {
-        return AppStateProvider(
-          appState: appState,
-          child: MaterialApp(
-            title: 'Misinformation Game',
-            theme: theme == 'light' ? ThemeData.light() : ThemeData.dark(),
-            initialRoute: '/',
-            routes: {
-              '/': (context) => MainPage(),
-              '/image_level1': (context) => ImageLevel1Page(),
-              '/image_level2': (context) => ImageLevel2Page(),
-              '/video_level': (context) => VideoLevelPage(),
-              '/summary': (context) =>  SummaryPage(),
-            },
-          ),
-        );
-      },
+    return MaterialApp(
+      title: 'Misinformation Game',
+      theme: ThemeData.light(),
+      home: MainPage(),
     );
   }
 }

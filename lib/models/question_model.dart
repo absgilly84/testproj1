@@ -69,6 +69,66 @@
 //     userAnsweredCorrectly = isCorrect(answer);
 //   }
 // }
+// class QuestionModel {
+//   QuestionModel({
+//     required this.question,
+//     required this.correctAnswer,
+//     required this.incorrectAnswers,
+//     required this.imageOptions,
+//     required this.videoOption,
+//     required this.score, // Add score property
+//     required this.wrongAnswers, // Add wrongAnswers property
+//     required this.correctAnswers, // Add correctAnswers property
+//     required this.notAnsweredQuestions, // Add notAnsweredQuestions property
+//   });
+
+//   factory QuestionModel.fromJson(Map<String, dynamic> json) {
+//     return QuestionModel(
+//       question: json['question'],
+//       correctAnswer: json['correct_answer'],
+//       incorrectAnswers: List<String>.from(json['incorrect_answers']),
+//       imageOptions: json['image_options'], // Replace 'image_options' with the actual field name
+//       videoOption: json['video_option'], // Replace 'video_option' with the actual field name
+//       score: 0, // Initialize score to 0
+//       wrongAnswers: 0, // Initialize wrongAnswers to 0
+//       correctAnswers: 0, // Initialize correctAnswers to 0
+//       notAnsweredQuestions: 0, // Initialize notAnsweredQuestions to 0
+//     );
+//   }
+
+//   String question;
+//   String correctAnswer;
+//   List<String> incorrectAnswers;
+//   List<String> imageOptions; // Replace 'imageOptions' with the actual field name
+//   String videoOption; // Replace 'videoOption' with the actual field name
+//   int score;
+//   int wrongAnswers;
+//   int correctAnswers;
+//   int notAnsweredQuestions;
+// }
+// class QuestionModel {
+//   QuestionModel({
+//     required this.question,
+//     required this.correctAnswer,
+//     required this.incorrectAnswers,
+//     required this.imageOptions,
+//     required this.videoOption,
+//     required this.score,
+//     required this.wrongAnswers,
+//     required this.correctAnswers,
+//     required this.notAnsweredQuestions,
+//   });
+
+//   String question;
+//   String correctAnswer;
+//   List<String> incorrectAnswers;
+//   List<String> imageOptions;
+//   String videoOption;
+//   int score;
+//   int wrongAnswers;
+//   int correctAnswers;
+//   int notAnsweredQuestions;
+// }
 class QuestionModel {
   QuestionModel({
     required this.question,
@@ -76,33 +136,33 @@ class QuestionModel {
     required this.incorrectAnswers,
     required this.imageOptions,
     required this.videoOption,
-    required this.score, // Add score property
-    required this.wrongAnswers, // Add wrongAnswers property
-    required this.correctAnswers, // Add correctAnswers property
-    required this.notAnsweredQuestions, // Add notAnsweredQuestions property
+    required this.score,
+    required this.wrongAnswers,
+    required this.correctAnswers,
+    required this.notAnsweredQuestions,
   });
+
+  String question;
+  String correctAnswer;
+  List<String> incorrectAnswers;
+  List<String> imageOptions;
+  String videoOption;
+  int score;
+  int wrongAnswers;
+  int correctAnswers;
+  int notAnsweredQuestions;
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) {
     return QuestionModel(
       question: json['question'],
       correctAnswer: json['correct_answer'],
       incorrectAnswers: List<String>.from(json['incorrect_answers']),
-      imageOptions: json['image_options'], // Replace 'image_options' with the actual field name
-      videoOption: json['video_option'], // Replace 'video_option' with the actual field name
-      score: 0, // Initialize score to 0
-      wrongAnswers: 0, // Initialize wrongAnswers to 0
-      correctAnswers: 0, // Initialize correctAnswers to 0
-      notAnsweredQuestions: 0, // Initialize notAnsweredQuestions to 0
+      imageOptions: List<String>.from(json['image_options']),
+      videoOption: json['video_option'],
+      score: json['score'],
+      wrongAnswers: json['wrong_answers'],
+      correctAnswers: json['correct_answers'],
+      notAnsweredQuestions: json['not_answered_questions'],
     );
   }
-
-  String question;
-  String correctAnswer;
-  List<String> incorrectAnswers;
-  List<String> imageOptions; // Replace 'imageOptions' with the actual field name
-  String videoOption; // Replace 'videoOption' with the actual field name
-  int score;
-  int wrongAnswers;
-  int correctAnswers;
-  int notAnsweredQuestions;
 }

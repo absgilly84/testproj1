@@ -462,23 +462,266 @@
 //     questions.dispose();
 //   }
 // }
-import 'package:testproj1/services/api_service.dart';
+// import 'dart:convert';
+
+// import 'package:testproj1/API/misinformation_api.dart';
+// import 'package:testproj1/services/api_service.dart';
+// import 'package:testproj1/models/category.dart';
+// import 'package:testproj1/models/question_model.dart';
+
+// class AppState {
+//   final ApiService api = ApiService();
+//   final StreamedList<DifficultyLevel> categoriesStream = StreamedList<DifficultyLevel>();
+//   //final StreamedValue<DifficultyLevel?> categoryChosen = StreamedValue<DifficultyLevel?>(initialData: null);
+//   //final StreamedValue<DifficultyLevel?> categoryChosen = StreamedValue<DifficultyLevel?>(initialData: null);
+//   final StreamedValue<DifficultyLevel?> categoryChosen = StreamedValue<DifficultyLevel?>(null, initialData: null);
+
+
+//   final StreamedList<QuestionModel> questions = StreamedList<QuestionModel>();
+
+//   int correctAnswers = 0;
+//   int wrongAnswers = 0;
+//   int totalScore = 0;
+
+//   AppState._internal() {
+//     _loadCategories();
+//   }
+
+//   static final AppState _instance = AppState._internal();
+
+//   factory AppState() => _instance;
+
+//   Future<void> _loadCategories() async {
+//     final isLoaded = await api.getLevels(categoriesStream);
+//     if (isLoaded) {
+//       categoryChosen.stream.listen((List<DifficultyLevel> categories) {
+//         // This listener will be called whenever new categories are added
+//         if (categories.isNotEmpty) {
+//           categoryChosen.value = categories.last;
+//         }
+//       } as void Function(DifficultyLevel? event)?);
+//     } else {
+//       // Handle the case where loading categories failed
+//       // For example, display an error message or retry loading
+//     }
+//   }
+
+//   Future<List<QuestionModel>> getQuestionsForLevel(int level) async {
+//     try {
+//       final response = await http.get('$baseUrl/api/level$level/questions' as Uri);
+//       if (response.statusCode == 200) {
+//         final List<dynamic> responseData = jsonDecode(response.body);
+//         final List<QuestionModel> questions = responseData
+//             .map((json) => QuestionModel.fromJson(json))
+//             .toList();
+//         return questions;
+//       } else {
+//         throw Exception('Failed to load questions for level $level. Status code: ${response.statusCode}');
+//       }
+//     } catch (e) {
+//       throw Exception('Failed to load questions for level $level. Error: $e');
+//     }
+//   }
+//   void setCategory(DifficultyLevel category) {
+//     categoryChosen.value = category;
+//   }
+
+//   void startTrivia() {
+//     _loadQuestions();
+//   }
+
+//   void endTrivia() {
+//     // Add logic to change the app state or notify listeners
+//   }
+
+//   void dispose() {
+//     categoriesStream.dispose();
+//     categoryChosen.dispose();
+//     questions.dispose();
+//   }
+// }
+// import 'package:testproj1/API/misinformation_api.dart';
+// import 'package:testproj1/models/category.dart';
+// import 'package:testproj1/models/question_model.dart';
+// import 'package:testproj1/services/api_service.dart';
+
+// class AppState {
+//   final ApiService api = ApiService();
+//   final StreamedList<DifficultyLevel> categoriesStream = StreamedList<DifficultyLevel>();
+//   final StreamedValue<DifficultyLevel?> categoryChosen = StreamedValue<DifficultyLevel?>(initialData: null);
+//   final StreamedList<QuestionModel> questions = StreamedList<QuestionModel>();
+  
+//   // Define the theme stream
+//   final StreamedValue<String> themeStream = StreamedValue<String>("light", initialData: "light");
+
+//   int correctAnswers = 0;
+//   int wrongAnswers = 0;
+//   int totalScore = 0;
+
+//   AppState._internal() {
+//     _loadCategories();
+//   }
+
+//   static final AppState _instance = AppState._internal();
+
+//   factory AppState() => _instance;
+
+//   Future<void> _loadCategories() async {
+//     final List<DifficultyLevel> categories = await api.getLevels();
+//     categoriesStream.addAll(categories);
+//     if (categories.isNotEmpty) {
+//       categoryChosen.value = categories.last;
+//     }
+
+//     categoryChosen.stream.listen((DifficultyLevel? category) {
+//       // Listener to handle changes in chosen category
+//       if (category != null) {
+//         _loadQuestionsForLevel(category.id); // Assuming id is the unique identifier for each difficulty level
+//       }
+//     });
+//   }
+
+//   Future<void> _loadQuestionsForLevel(int level) async {
+//     try {
+//       final List<QuestionModel> loadedQuestions = await api.getQuestions(level);
+//       questions.addAll(loadedQuestions);
+//     } catch (e) {
+//       // Handle error
+//       print('Failed to load questions for level $level: $e');
+//     }
+//   }
+
+//   void setCategory(DifficultyLevel category) {
+//     categoryChosen.value = category;
+//   }
+
+//   void startTrivia() {
+//     // Add logic to start trivia
+//   }
+
+//   void endTrivia() {
+//     // Add logic to end trivia
+//   }
+
+//   void dispose() {
+//     categoriesStream.dispose();
+//     categoryChosen.dispose();
+//     questions.dispose();
+//   }
+// }
+
+// import 'package:testproj1/models/category.dart';
+// import 'package:testproj1/models/question_model.dart';
+// import 'package:testproj1/services/api_service.dart';
+
+// class AppState {
+//   final ApiService api = ApiService();
+//   final StreamedList<DifficultyLevel> categoriesStream = StreamedList<DifficultyLevel>();
+//   final StreamedValue<DifficultyLevel?> categoryChosen = StreamedValue<DifficultyLevel?>(initialData: null);
+//   final StreamedList<QuestionModel> questions = StreamedList<QuestionModel>();
+
+//   final StreamedValue<String> themeStream = StreamedValue<String>("light", initialData: "light");
+
+//   int correctAnswers = 0;
+//   int wrongAnswers = 0;
+//   int totalScore = 0;
+
+//   AppState._internal() {
+//     _loadCategories();
+//   }
+
+//   static final AppState _instance = AppState._internal();
+
+//   factory AppState() => _instance;
+
+//   Future<void> _loadCategories() async {
+//     final List<DifficultyLevel> categories = await api.getLevels();
+//     categoriesStream.addAll(categories);
+//     if (categories.isNotEmpty) {
+//       categoryChosen.value = categories.last;
+//     }
+
+//     categoryChosen.stream.listen((DifficultyLevel? category) {
+//       if (category != null) {
+//         _loadQuestionsForLevel(category.id);
+//       }
+//     });
+//   }
+
+//   Future<void> _loadQuestionsForLevel(int level) async {
+//     try {
+//       final List<QuestionModel> loadedQuestions = await api.getQuestions(level);
+//       questions.addAll(loadedQuestions);
+//     } catch (e) {
+//       print('Failed to load questions for level $level: $e');
+//     }
+//   }
+
+//   void setCategory(DifficultyLevel category) {
+//     categoryChosen.value = category;
+//   }
+
+//   void startTrivia() {
+//     // Add logic to start trivia
+//   }
+
+//   void endTrivia() {
+//     // Add logic to end trivia
+//   }
+
+//   void dispose() {
+//     categoriesStream.dispose();
+//     categoryChosen.dispose();
+//     questions.dispose();
+//   }
+// }
+// import 'package:testproj1/api/app_service.dart';
+// import 'package:testproj1/models/category.dart';
+// import 'package:testproj1/models/question_model.dart';
+// import 'package:testproj1/api/streamed_list.dart'; // Assuming this is needed
+
+// class AppState {
+//   final AppService api = ApiService();
+
+//   final StreamedList<DifficultyLevel> categoriesStream = StreamedList<DifficultyLevel>();
+//   final StreamedList<QuestionModel> questions = StreamedList<QuestionModel>();
+
+//   AppState._internal() {
+//     _loadCategories();
+//   }
+
+//   static final AppState _instance = AppState._internal();
+
+//   factory AppState() => _instance;
+
+//   Future<void> _loadCategories() async {
+//     try {
+//       final List<DifficultyLevel> categories = await api.getLevels();
+//       categoriesStream.addAll(categories);
+//     } catch (e) {
+//       print('Failed to load categories: $e');
+//     }
+//   }
+
+//   Future<void> loadQuestionsForLevel(int level) async {
+//     try {
+//       final List<QuestionModel> loadedQuestions = await api.getQuestions(level);
+//       questions.addAll(loadedQuestions);
+//     } catch (e) {
+//       print('Failed to load questions for level $level: $e');
+//     }
+//   }
+// }
+import 'package:testproj1/api/app_service.dart'; // Corrected import statement
 import 'package:testproj1/models/category.dart';
 import 'package:testproj1/models/question_model.dart';
+import 'package:testproj1/api/streamed_list.dart'; // Assuming this is needed
 
 class AppState {
-  final ApiService api = ApiService();
+  final ApiService api = ApiService(); // Corrected instantiation
+
   final StreamedList<DifficultyLevel> categoriesStream = StreamedList<DifficultyLevel>();
-  //final StreamedValue<DifficultyLevel?> categoryChosen = StreamedValue<DifficultyLevel?>(initialData: null);
-  //final StreamedValue<DifficultyLevel?> categoryChosen = StreamedValue<DifficultyLevel?>(initialData: null);
-  final StreamedValue<DifficultyLevel?> categoryChosen = StreamedValue<DifficultyLevel?>(null, initialData: null);
-
-
   final StreamedList<QuestionModel> questions = StreamedList<QuestionModel>();
-
-  int correctAnswers = 0;
-  int wrongAnswers = 0;
-  int totalScore = 0;
 
   AppState._internal() {
     _loadCategories();
@@ -489,51 +732,20 @@ class AppState {
   factory AppState() => _instance;
 
   Future<void> _loadCategories() async {
-    final isLoaded = await api.getLevels(categoriesStream);
-    if (isLoaded) {
-      categoryChosen.stream.listen((List<DifficultyLevel> categories) {
-        // This listener will be called whenever new categories are added
-        if (categories.isNotEmpty) {
-          categoryChosen.value = categories.last;
-        }
-      } as void Function(DifficultyLevel? event)?);
-    } else {
-      // Handle the case where loading categories failed
-      // For example, display an error message or retry loading
-    }
-  }
-
-  Future<List<QuestionModel>> getQuestionsForLevel(int level) async {
     try {
-      final response = await http.get('$baseUrl/api/level$level/questions' as Uri);
-      if (response.statusCode == 200) {
-        final List<dynamic> responseData = jsonDecode(response.body);
-        final List<QuestionModel> questions = responseData
-            .map((json) => QuestionModel.fromJson(json))
-            .toList();
-        return questions;
-      } else {
-        throw Exception('Failed to load questions for level $level. Status code: ${response.statusCode}');
-      }
+      final List<DifficultyLevel> categories = await api.getLevels();
+      categoriesStream.addAll(categories);
     } catch (e) {
-      throw Exception('Failed to load questions for level $level. Error: $e');
+      print('Failed to load categories: $e');
     }
   }
-  void setCategory(DifficultyLevel category) {
-    categoryChosen.value = category;
-  }
 
-  void startTrivia() {
-    _loadQuestions();
-  }
-
-  void endTrivia() {
-    // Add logic to change the app state or notify listeners
-  }
-
-  void dispose() {
-    categoriesStream.dispose();
-    categoryChosen.dispose();
-    questions.dispose();
+  Future<void> loadQuestionsForLevel(int level) async {
+    try {
+      final List<QuestionModel> loadedQuestions = await api.getQuestions(level);
+      questions.addAll(loadedQuestions);
+    } catch (e) {
+      print('Failed to load questions for level $level: $e');
+    }
   }
 }

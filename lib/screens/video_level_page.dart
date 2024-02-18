@@ -115,65 +115,131 @@
 
 // class VideoPlayerController {
 // }
-import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
-import 'package:testproj1/models/question_model.dart';
+// import 'package:flutter/material.dart';
+// import 'package:video_player/video_player.dart';
+// import 'package:testproj1/models/question_model.dart';
 
-class VideoLevelPage extends StatefulWidget {
-  final QuestionModel question;
+// class VideoLevelPage extends StatefulWidget {
+//   final QuestionModel question;
 
-  const VideoLevelPage({Key key, this.question}) : super(key: key);
+//   const VideoLevelPage({Key key, this.question}) : super(key: key);
 
-  @override
-  _VideoLevelPageState createState() => _VideoLevelPageState();
-}
+//   @override
+//   _VideoLevelPageState createState() => _VideoLevelPageState();
+// }
 
-class _VideoLevelPageState extends State<VideoLevelPage> {
-  late VideoPlayerController _videoController;
-  bool _isVideoPlaying = false;
+// class _VideoLevelPageState extends State<VideoLevelPage> {
+//   late VideoPlayerController _videoController;
+//   bool _isVideoPlaying = false;
 
-  @override
-  void initState() {
-    super.initState();
-    // Initialize the VideoPlayerController with the video URL or asset path
-    _videoController = VideoPlayerController.networkUrl('https:://www.example.com/sample.mp4' as Uri);
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     // Initialize the VideoPlayerController with the video URL or asset path
+//     _videoController = VideoPlayerController.networkUrl('https:://www.example.com/sample.mp4' as Uri);
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Media Deepfake Recognition'),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(widget.question.question),
-          SizedBox(height: 20),
-          _isVideoPlaying
-              ? AspectRatio(
-                  aspectRatio: _videoController.value.aspectRatio,
-                  child: VideoPlayer(_videoController),
-                )
-              : ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      _isVideoPlaying = true;
-                    });
-                    _videoController.play();
-                  },
-                  child: Text('Play Video'),
-                ),
-          // Add your UI widgets for answer selection, score display, etc.
-        ],
-      ),
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Media Deepfake Recognition'),
+//       ),
+//       body: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Text(widget.question.question),
+//           SizedBox(height: 20),
+//           _isVideoPlaying
+//               ? AspectRatio(
+//                   aspectRatio: _videoController.value.aspectRatio,
+//                   child: VideoPlayer(_videoController),
+//                 )
+//               : ElevatedButton(
+//                   onPressed: () {
+//                     setState(() {
+//                       _isVideoPlaying = true;
+//                     });
+//                     _videoController.play();
+//                   },
+//                   child: Text('Play Video'),
+//                 ),
+//           // Add your UI widgets for answer selection, score display, etc.
+//         ],
+//       ),
+//     );
+//   }
 
-  @override
-  void dispose() {
-    // Dispose of the VideoPlayerController to free up resources
-    _videoController.dispose();
-    super.dispose();
-  }
-}
+//   @override
+//   void dispose() {
+//     // Dispose of the VideoPlayerController to free up resources
+//     _videoController.dispose();
+//     super.dispose();
+//   }
+// }
+// import 'package:flutter/material.dart';
+// import 'package:video_player/video_player.dart';
+// import 'package:testproj1/models/question_model.dart';
+
+// class VideoLevelPage extends StatefulWidget {
+//   final QuestionModel question;
+
+//   const VideoLevelPage({Key? key, required this.question}) : super(key: key);
+
+//   @override
+//   _VideoLevelPageState createState() => _VideoLevelPageState();
+// }
+
+// class _VideoLevelPageState extends State<VideoLevelPage> {
+//   late VideoPlayerController _videoController;
+//   bool _isVideoPlaying = false;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     // Initialize the VideoPlayerController with the video URL or asset path
+//     _videoController = VideoPlayerController.network(widget.question.videoUrl)
+//       ..initialize().then((_) {
+//         // Ensure the first frame is shown after the video is initialized
+//         setState(() {});
+//       });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Media Deepfake Recognition'),
+//       ),
+//       body: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Text(widget.question.question),
+//           SizedBox(height: 20),
+//           _videoController.value.isInitialized
+//               ? AspectRatio(
+//                   aspectRatio: _videoController.value.aspectRatio,
+//                   child: VideoPlayer(_videoController),
+//                 )
+//               : ElevatedButton(
+//                   onPressed: () {
+//                     setState(() {
+//                       _isVideoPlaying = true;
+//                     });
+//                     _videoController.play();
+//                   },
+//                   child: Text('Play Video'),
+//                 ),
+//           // Add your UI widgets for answer selection, score display, etc.
+//         ],
+//       ),
+//     );
+//   }
+
+//   @override
+//   void dispose() {
+//     // Dispose of the VideoPlayerController to free up resources
+//     _videoController.dispose();
+//     super.dispose();
+//   }
+// }

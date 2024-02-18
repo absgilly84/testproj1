@@ -21,6 +21,23 @@
 //     ];
 //   }
 // }
+// class DifficultyLevel {
+//   DifficultyLevel({required this.id, required this.name});
+
+//   factory DifficultyLevel.fromJson(Map<String, dynamic> json) {
+//     return DifficultyLevel(
+//       id: json['id'],
+//       name: json['name'],
+//     );
+//   }
+
+//   int id;
+//   String name;
+
+//   // Add any additional fields or methods as needed
+
+//   // You can remove the static list of difficulty levels since we'll fetch them from the API
+// }
 class DifficultyLevel {
   DifficultyLevel({required this.id, required this.name});
 
@@ -33,8 +50,4 @@ class DifficultyLevel {
 
   int id;
   String name;
-
-  // Add any additional fields or methods as needed
-
-  // You can remove the static list of difficulty levels since we'll fetch them from the API
 }
